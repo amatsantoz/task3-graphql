@@ -1,0 +1,48 @@
+type User {
+	id: Int
+	name: String
+	email: String
+	username: String	
+}
+type News {
+	id: Int
+	judul: String
+	kategori: String
+	gambar: String
+	desc: String
+	deleteAt: String
+}
+type NestedNews {
+	id: Int
+	judul: String
+	kategori: String
+	gambar: String
+	desc: String
+	deleteAt: String
+	comments: [Comment]
+}
+
+type Comment {
+	id: Int
+	description: String
+	newsId: Int
+}
+
+type Token {
+	token: String
+	expired: String	
+}
+type Query {
+	users: [User]
+	newss: [News]
+	comments: [Comment]
+}
+type Mutation {
+	register(name: String, email:String,username: String, password: String): User,
+	login(username: String, password: String): Token,
+	addNews(judul: String, kategori: String, gambar: String, desc: String): News,
+	detailNews(id: Int): NestedNews,
+	updateNews(id: Int, judul: String, kategori: String, gambar: String, desc: String): News,
+	deleteNews(id: Int): News,
+	addComment(newsId: Int, description: String): Comment,
+}
